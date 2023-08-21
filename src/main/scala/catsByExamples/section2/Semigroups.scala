@@ -30,14 +30,23 @@ object Semigroups {
     (e1, e2) => Expense(Math.max(e1.id, e2.id), e1.amount + e2.amount)
   }
 
-  //extension methods from Semigroup -|+|
+  // extension methods from Semigroup -|+|
   import cats.syntax.semigroup._
 
-  val anIntSum = 4 |+| 5 //|+| requires the presence of an implicit Semigroup[Int]
-  val anExpenseSum = Expense(1, 23) |+| Expense(4, 23) //|+| requires the presence of an implicit Semigroup[Expense]
+  val anIntSum =
+    4 |+| 5 // |+| requires the presence of an implicit Semigroup[Int]
+  val anExpenseSum =
+    Expense(1, 23) |+| Expense(
+      4,
+      23
+    ) // |+| requires the presence of an implicit Semigroup[Expense]
 
-  //Excercise 2 : implement reduceThing_v2 using |+|
-  def reduceThings_v2[T](list: List[T])(implicit semigroup: Semigroup[T]): T = list.reduce(_ |+| _)
+  // Excercise 2 : implement reduceThing_v2 using |+|
+  def reduceThings_v2[T](list: List[T])(implicit semigroup: Semigroup[T]): T =
+    list.reduce(_ |+| _)
+
+  def reduceThings_v3[T: Semigroup](list: List[T]): T = list.reduce(_ |+| _) // use context bound
+
   def main(args: Array[String]): Unit = {
     println(intCombination)
     println(stringCombination)
@@ -58,6 +67,7 @@ object Semigroups {
     println(reduceThings(expenses))
     println(anExpenseSum)
     println(reduceThings_v2(expenses))
+    println(reduceThings_v3(expenses))
 
   }
 
