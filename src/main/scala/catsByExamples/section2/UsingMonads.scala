@@ -110,6 +110,7 @@ object UsingMonads {
     println(responseOption)
     println(responseEither)
     println(getResponse(ErrorOrHttpService, "Option HTTP service"))
+    println(getResponse(OptionHttpService, "Option HTTP service"))
   }
 
 }
