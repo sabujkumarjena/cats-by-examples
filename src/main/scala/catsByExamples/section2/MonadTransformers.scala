@@ -5,7 +5,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 object MonadTransformers {
 
-  def sumAllOptions(values: List[Option[Int]]): Int = ???
+  //def sumAllOptions(values: List[Option[Int]]): Int = ???
   // option transformer
   import cats.data.OptionT
   import cats.instances.list._ // fetch an implicit OptionT[List] //case class OptionT[F[_], A](value: F[Option[A]])
