@@ -45,7 +45,7 @@ object Folding {
   // nesting
   import cats.instances.vector._
   val intsNested = List(Vector(1, 2, 3), Vector(4, 5, 6))
-  (Foldable[List] compose Foldable[Vector]).combineAll(intsNested)
+  val res = (Foldable[List] compose Foldable[Vector]).combineAll(intsNested)
 
   // extension methods
   import cats.syntax.foldable._
@@ -61,5 +61,6 @@ object Folding {
     println(filter(numbers)(_ % 2 == 0))
 
     println(combineAll(numbers))
+    println(res)
   }
 }
